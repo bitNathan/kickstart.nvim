@@ -1036,7 +1036,7 @@ vim.keymap.set('n', '<leader>th', ':split | terminal<CR>', { noremap = true, sil
 vim.keymap.set('n', '<leader>tv', ':vs | terminal<CR>', { noremap = true, silent = true })
 
 -- Map <leader>tc to open a terminal in the current window
-vim.keymap.set('n', '<leader>tc', ':vs | terminal<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tc', ':terminal<CR>', { noremap = true, silent = true })
 
 -- set esc as the keymap to exi terminal
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
