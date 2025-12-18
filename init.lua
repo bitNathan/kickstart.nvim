@@ -941,7 +941,7 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    main = 'nvim-treesitter.config', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
@@ -1014,3 +1014,48 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+--[[
+-- making the terminal nice and usable
+-- ]]
+
+vim.api.nvim_create_user_command('Spterm', function()
+  -- Split the window horizontally and open a terminal
+  vim.cmd 'split | terminal'
+end, {})
+
+vim.api.nvim_create_user_command('Vsterm', function()
+  -- Split the window vertically and open a terminal
+  vim.cmd 'vs | terminal'
+end, {})
+
+-- Map <leader>th to open a terminal in a horizontal split
+vim.keymap.set('n', '<leader>th', ':split | terminal<CR>', { noremap = true, silent = true })
+
+-- Map <leader>tv to open a terminal in a vertical split
+vim.keymap.set('n', '<leader>tv', ':vs | terminal<CR>', { noremap = true, silent = true })
+
+-- Map <leader>tc to open a terminal in the current window
+vim.keymap.set('n', '<leader>tc', ':vs | terminal<CR>', { noremap = true, silent = true })
+
+-- set esc as the keymap to exi terminal
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
+
+--[[
+-- tabs
+--]]
+
+-- open new tabs
+-- TODO open telescope auto?
+vim.keymap.set('n', '<leader>|', ':vs<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>_', ':sp<CR>', { noremap = true, silent = true })
+
+-- tab through tabs
+vim.keymap.set('n', '<leader><Tab>', ':tabn<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><S-Tab>', ':tabp<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>tt', ':tabe<CR>', { noremap = true, silent = true })
+
+--[[
+-- TODO open links in default browser
+-- ]]
