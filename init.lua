@@ -894,7 +894,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'murphy'
     end,
   },
 
@@ -1019,16 +1019,6 @@ require('lazy').setup({
 -- making the terminal nice and usable
 -- ]]
 
-vim.api.nvim_create_user_command('Spterm', function()
-  -- Split the window horizontally and open a terminal
-  vim.cmd 'split | terminal'
-end, {})
-
-vim.api.nvim_create_user_command('Vsterm', function()
-  -- Split the window vertically and open a terminal
-  vim.cmd 'vs | terminal'
-end, {})
-
 -- Map <leader>th to open a terminal in a horizontal split
 vim.keymap.set('n', '<leader>th', ':split | terminal<CR>', { noremap = true, silent = true })
 
@@ -1038,6 +1028,9 @@ vim.keymap.set('n', '<leader>tv', ':vs | terminal<CR>', { noremap = true, silent
 -- Map <leader>tc to open a terminal in the current window
 vim.keymap.set('n', '<leader>tc', ':terminal<CR>', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<leader>|', ':vnew<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>_', ':new<CR>', { noremap = true, silent = true })
+
 -- set esc as the keymap to exi terminal
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
 
@@ -1045,15 +1038,12 @@ vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
 -- tabs
 --]]
 
--- open new tabs
--- TODO open telescope auto?
-vim.keymap.set('n', '<leader>|', ':vs<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>_', ':sp<CR>', { noremap = true, silent = true })
-
--- tab through tabs
+-- walk through tabs
 vim.keymap.set('n', '<leader><Tab>', ':tabn<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader><S-Tab>', ':tabp<CR>', { noremap = true, silent = true })
 
+-- open new tabs
+-- TODO open telescope auto?
 vim.keymap.set('n', '<leader>tt', ':tabe<CR>', { noremap = true, silent = true })
 
 --[[
