@@ -1020,7 +1020,12 @@ require('lazy').setup({
 -- ]]
 
 -- Map <leader>th to open a terminal in a horizontal split
-vim.keymap.set('n', '<leader>th', ':split | terminal<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>ts', ':split | terminal<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>t', function()
+  vim.cmd 'botright split'
+  vim.cmd('resize ' .. math.floor(vim.o.lines / 4))
+  vim.cmd 'terminal'
+end)
 
 -- Map <leader>tv to open a terminal in a vertical split
 vim.keymap.set('n', '<leader>tv', ':vs | terminal<CR>', { noremap = true, silent = true })
